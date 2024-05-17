@@ -1,6 +1,7 @@
 import React from 'react'
 import {  Link } from "react-router-dom";
 export function Navbar() {
+ 
   return (
     
     <nav className="bg-[#EAECEC] border-gray-200 dark:bg-gray-900">
