@@ -1,5 +1,5 @@
 import { create} from 'zustand'
-import { GetAllProducts} from '../api/ProductApi';
+import { GetAllProducts,GetProduct} from '../api/ProductApi';
 
 const useProductStore = create((set) => ({
   products: [],
@@ -12,13 +12,15 @@ const useProductStore = create((set) => ({
       // Handle error if needed
     }
   },
-  searchProduct: async (productName) => {
-    // Simular una búsqueda de producto por nombre (aquí puedes realizar la lógica real de búsqueda)
-    // Supongamos que tenemos una función fetchProductByName que devuelve una lista de productos
-    const products = await fetchProductByName(productName);
+  searchProduct: async (name) => {
+    // Simular una búsqueda de producto por nombre
+    const data = await GetProduct(name);
 
     // Actualizar el estado con los productos encontrados
-    set({ products });
+    set({ products: data });
+  },
+  clearProducts: () => {
+    set({ products: [] });
   },
 }));
 
