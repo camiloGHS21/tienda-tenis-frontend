@@ -1,22 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { CradProduct } from '../components/CradProduct';
-import { GetAllProducts } from '../api/ProductApi'
+import useProductStore from '../store';
 export default function Products() {
-    const [products, setProducts] = useState([]);
-
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const data = await GetAllProducts();
-          setProducts(data);
-        } catch (error) {
-          console.error('Error fetching products:', error);
-          // Handle error if needed
-        }
-      };
-  
-      fetchData();
-    }, []);
+  const products = useProductStore((state) => state.products);
+  const fetchProducts = useProductStore((state) => state.fetchProducts);
+  useEffect(() => {
+    fetchProducts();
+  }, []);
   
     return (
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 m-10">
