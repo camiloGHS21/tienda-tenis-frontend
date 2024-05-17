@@ -12,6 +12,14 @@ const useProductStore = create((set) => ({
       // Handle error if needed
     }
   },
+  searchProduct: async (productName) => {
+    // Simular una búsqueda de producto por nombre (aquí puedes realizar la lógica real de búsqueda)
+    // Supongamos que tenemos una función fetchProductByName que devuelve una lista de productos
+    const products = await fetchProductByName(productName);
+
+    // Actualizar el estado con los productos encontrados
+    set({ products });
+  },
 }));
 
 export default useProductStore;

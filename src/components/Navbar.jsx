@@ -1,12 +1,18 @@
 import React from 'react'
 import {  Link } from "react-router-dom";
+import useProductStore from '../store';
 export function Navbar() {
- 
+  const fetchProduct = useProductStore((state) => state.searchProduct);
+
+  // Llamar a fetchProduct con el nombre del producto deseado
+  const handleSearch = async (productName) => {
+    await fetchProduct(productName);
+  };
   return (
     
     <nav className="bg-[#EAECEC] border-gray-200 dark:bg-gray-900">
     <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-    <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
+    <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
         <img src="img/logo.png" class="h-8" alt="Flowbite Logo" />
         
     </a>
@@ -24,7 +30,7 @@ export function Navbar() {
           </svg>
           <span className="sr-only">Search icon</span>
         </div>
-        <input type="text" id="search-navbar" className="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search..."/>
+        <input type="text" id="search-navbar" className="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search..."  onChange={(e) => handleSearch(e.target.value)}/>
       </div>
       <button data-collapse-toggle="navbar-search" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-search" aria-expanded="false">
           <span className="sr-only">Open main menu</span>
