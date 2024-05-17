@@ -9,8 +9,13 @@ export function Navbar() {
    // Llamar a fetchProduct con el nombre del producto deseado
   function buscar(){
    console.log(nombre)
-    fetchProduct(nombre);
-    console(product)
+    
+    if(nombre.length >0){
+      fetchProduct(nombre);
+      console(product)
+    }
+    window.location.reload();
+   
 
   }
 function changeName(event) {

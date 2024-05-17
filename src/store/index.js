@@ -17,7 +17,9 @@ const useProductStore = create((set) => ({
     const data = await GetProduct(name);
 
     // Actualizar el estado con los productos encontrados
-    set({ products: data });
+    if(data.length > 0){
+      set({ products: data });
+    }
   },
   clearProducts: () => {
     set({ products: [] });
