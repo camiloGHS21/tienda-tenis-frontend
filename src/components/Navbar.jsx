@@ -43,10 +43,10 @@ export function Navbar() {
         </div>
         <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-[#EAECEC] md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-[#EAECEC] dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
           <li>
-            <Link to="/" className="block py-2 px-3 text-2xl text-black rounded md:bg-transparent " aria-current="page">Inicio</Link>
+            <Link to="/" className="block py-2 px-3 text-2xl text-black rounded md:bg-transparent " aria-current="page">Home</Link>
           </li>
           <li>
-            <Link to="/contact" className="block py-2 px-3 text-2xl text-black rounded md:bg-transparent " aria-current="page">Contacto</Link>
+            <Link to="/contact" className="block py-2 px-3 text-2xl text-black rounded md:bg-transparent " aria-current="page">Contact</Link>
           </li>
         </ul>
       </div>
