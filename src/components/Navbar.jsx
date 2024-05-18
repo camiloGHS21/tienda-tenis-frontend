@@ -39,6 +39,9 @@ export function Navbar() {
   const product = useProductStore((state) => state.products);
   const [nombre, setnombre] = useState("")
   const [abrirCarrito,setAbrirCarrito] = useState(false);
+  const [product1, setProduct1] = useState(products);
+  
+
   // Llamar a fetchProduct con el nombre del producto deseado
   // Llamar a fetchProduct con el nombre del producto deseado
   function buscar() {
@@ -55,6 +58,27 @@ export function Navbar() {
   function changeName(event) {
     setnombre(event.target.value);
   }
+
+
+  const removeProduct = (idToRemove) => {
+    const updatedProducts = product1.filter(product => product.id !== idToRemove);
+    // Actualizar el estado de los productos
+    setProduct1(updatedProducts);
+  };
+  
+  const sumarPrecios = () => {
+    const total = product1.reduce((accumulator, currentProduct) => {
+      // Convertir el precio del producto a un número (puede que necesites un paso adicional aquí dependiendo del formato del precio)
+      const price = parseFloat(currentProduct.price.replace('$', '')); // Eliminar el signo de dólar si lo tiene
+      return accumulator + price;
+    }, 0);
+  
+    // Redondear el total a dos decimales
+    const totalConDosDecimales = total.toFixed(2);
+  
+    return totalConDosDecimales;
+  };
+  
 
   return (
  <>
@@ -164,7 +188,7 @@ export function Navbar() {
                       <div className="mt-8">
                         <div className="flow-root">
                           <ul role="list" className="-my-6 divide-y divide-gray-200">
-                            {products.map((product) => (
+                            {product1.map((product) => (
                               <li key={product.id} className="flex py-6">
                                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                   <img
@@ -190,6 +214,9 @@ export function Navbar() {
                                     <div className="flex">
                                       <button
                                         type="button"
+                                        onClick={()=>{
+                                         removeProduct(product.id)
+                                        }}
                                         className="font-medium text-indigo-600 hover:text-indigo-500"
                                       >
                                         Remove
@@ -207,7 +234,7 @@ export function Navbar() {
                     <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                       <div className="flex justify-between text-base font-medium text-gray-900">
                         <p>Subtotal</p>
-                        <p>$262.00</p>
+                        <p>$ {  sumarPrecios()}</p>
                       </div>
                       <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                       <div className="mt-6">
