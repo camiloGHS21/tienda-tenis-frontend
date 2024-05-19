@@ -1,4 +1,4 @@
-import React, { useState ,Fragment } from 'react'
+import React, { useState ,Fragment,useEffect } from 'react'
 import { Link } from "react-router-dom";
 import useProductStore from '../store';
 
@@ -6,30 +6,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 
 
-const products = [
-  {
-    id: 1,
-    name: 'Throwback Hip Bag',
-    href: '#',
-    color: 'Salmon',
-    price: '$90.00',
-    quantity: 1,
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg',
-    imageAlt: 'Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt.',
-  },
-  {
-    id: 2,
-    name: 'Medium Stuff Satchel',
-    href: '#',
-    color: 'Blue',
-    price: '$32.00',
-    quantity: 1,
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg',
-    imageAlt:
-      'Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.',
-  },
-  // More products...
-]
+
 
 export function Navbar() {
 
@@ -37,19 +14,23 @@ export function Navbar() {
   
   const fetchProduct = useProductStore((state) => state.searchProduct);
   const product = useProductStore((state) => state.products);
+  const cart = useProductStore((state) => state.carrito)
+  const fetchCart = useProductStore((state) => state.fetchCarrito)
   const [nombre, setnombre] = useState("")
   const [abrirCarrito,setAbrirCarrito] = useState(false);
-  const [product1, setProduct1] = useState(products);
-  
+  const [product1, setProduct1] = useState(cart);
+
+  useEffect(() => {
+    fetchCart();
+  }, [])
 
   // Llamar a fetchProduct con el nombre del producto deseado
   // Llamar a fetchProduct con el nombre del producto deseado
   function buscar() {
-    console.log(nombre)
+   
 
     if (nombre.length > 0) {
       fetchProduct(nombre);
-      console(product)
     }
     window.location.reload();
 
@@ -61,7 +42,7 @@ export function Navbar() {
 
 
   const removeProduct = (idToRemove) => {
-    const updatedProducts = product1.filter(product => product.id !== idToRemove);
+    const updatedProducts = cart.filter(product => product.id !== idToRemove);
     // Actualizar el estado de los productos
     setProduct1(updatedProducts);
   };
@@ -69,7 +50,7 @@ export function Navbar() {
   const sumarPrecios = () => {
     const total = product1.reduce((accumulator, currentProduct) => {
       // Convertir el precio del producto a un número (puede que necesites un paso adicional aquí dependiendo del formato del precio)
-      const price = parseFloat(currentProduct.price.replace('$', '')); // Eliminar el signo de dólar si lo tiene
+      const price = parseFloat(currentProduct.total.replace('$', '')); // Eliminar el signo de dólar si lo tiene
       return accumulator + price;
     }, 0);
   
@@ -91,24 +72,24 @@ export function Navbar() {
         <div className="flex md:order-2">
           <button type="button" data-collapse-toggle="navbar-search" aria-controls="navbar-search" aria-expanded="false" className="md:hidden text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 me-1">
             <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-              <path stroke="currentColor" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+              <path stroke="currentColor"  d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
             </svg>
             <span className="sr-only">Search</span>
           </button>
           <div className="relative hidden md:block">
             <div className="absolute inset-y-0 start-0 flex items-center ps-3 cursor-pointer" onClick={() => buscar()}>
               <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                <path stroke="currentColor"    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
               </svg>
               <span className="sr-only">Search icon</span>
             </div>
-            <input type="text" id="search-navbar" className="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search..." value={nombre} onChange={changeName} />
+            <input type="text" id="search-navbar" onKeyDown={(e) => {if(e.key === 'Enter') buscar() }} className="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search..." value={nombre} onChange={changeName} />
           </div>
         
           <button data-collapse-toggle="navbar-search" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-search" aria-expanded="false">
             <span className="sr-only">Open main menu</span>
             <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
+              <path stroke="currentColor"   d="M1 1h15M1 7h15M1 13h15" />
             </svg>
           </button>
 
@@ -118,7 +99,7 @@ export function Navbar() {
           <div className="relative mt-3 md:hidden">
             <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
               <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                <path stroke="currentColor"    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
               </svg>
             </div>
             <input type="text" id="search-navbar" className="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search..." />
@@ -184,16 +165,16 @@ export function Navbar() {
                           </button>
                         </div>
                       </div>
-
+                     
                       <div className="mt-8">
                         <div className="flow-root">
                           <ul role="list" className="-my-6 divide-y divide-gray-200">
-                            {product1.map((product) => (
-                              <li key={product.id} className="flex py-6">
+                            {cart.map((product) => (
+                              <li key={product.producto.id_producto} className="flex py-6">
                                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                   <img
-                                    src={product.imageSrc}
-                                    alt={product.imageAlt}
+                                    src={product.producto.imagen}
+                                    alt={product.producto.imagen}
                                     className="h-full w-full object-cover object-center"
                                   />
                                 </div>
@@ -202,20 +183,20 @@ export function Navbar() {
                                   <div>
                                     <div className="flex justify-between text-base font-medium text-gray-900">
                                       <h3>
-                                        <a href={product.href}>{product.name}</a>
+                                        <a href={"product/"+product.producto.id_producto}>{product.producto.nombre}</a>
                                       </h3>
-                                      <p className="ml-4">{product.price}</p>
+                                      <p className="ml-4">{product.producto.precio}</p>
                                     </div>
-                                    <p className="mt-1 text-sm text-gray-500">{product.color}</p>
+                                    <p className="mt-1 text-sm text-gray-500">{product.producto.color}</p>
                                   </div>
                                   <div className="flex flex-1 items-end justify-between text-sm">
-                                    <p className="text-gray-500">Qty {product.quantity}</p>
+                                    {/* <p className="text-gray-500">Qty {product.quantity}</p> */}
 
                                     <div className="flex">
                                       <button
                                         type="button"
                                         onClick={()=>{
-                                         removeProduct(product.id)
+                                         removeProduct(product.producto.id_producto)
                                         }}
                                         className="font-medium text-indigo-600 hover:text-indigo-500"
                                       >

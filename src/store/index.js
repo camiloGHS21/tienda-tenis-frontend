@@ -1,12 +1,22 @@
 import { create} from 'zustand'
 import { GetAllProducts,GetProduct} from '../api/ProductApi';
+import { GetAllcarrito,addCarrito } from '../api/CarritoApi';
 
 const useProductStore = create((set) => ({
   products: [],
+  carrito: [],
   fetchProducts: async () => {
     try {
       const data = await GetAllProducts();
       set({ products: data });
+    } catch (error) {
+      console.error('Error fetching products:', error);
+      // Handle error if needed
+    }
+  }, fetchCarrito: async () => {
+    try {
+      const data = await GetAllcarrito();
+      set({ carrito: data });
     } catch (error) {
       console.error('Error fetching products:', error);
       // Handle error if needed
@@ -21,9 +31,17 @@ const useProductStore = create((set) => ({
       set({ products: data });
     }
   },
-  clearProducts: () => {
-    set({ products: [] });
-  },
+  addProductToCarrito: async (name,cantidad) => {
+    try {
+        const carritoProduct = await GetProduct(name);
+       carritoProduct.map(cart => {const total = cantidad*cart.precio;addCarrito({"cantidad_de_productos": 5,"total": 5000,"producto": carritoProduct})})
+        set({ carrito: carritoProduct});
+    } catch (error) {
+        console.error('Error adding product to carrito:', error);
+        // Handle error if needed
+    }
+}
+
 }));
 
 export default useProductStore;

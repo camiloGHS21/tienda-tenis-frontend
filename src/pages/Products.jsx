@@ -5,7 +5,8 @@ import useProductStore from '../store';
 export default function Products() {
   const products = useProductStore((state) => state.products);
   const fetchProducts = useProductStore((state) => state.fetchProducts);
-   const fetchProduct = useProductStore((state) => state.searchProduct);
+  const fetchProduct = useProductStore((state) => state.searchProduct);
+  
   useEffect(() => {
     fetchProducts();
   }, []);
