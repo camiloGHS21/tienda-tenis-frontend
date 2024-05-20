@@ -5,8 +5,7 @@ export function CradProduct({nombre,imagen,precio}) {
 
     const handleAddToCarrito = () => {
         const productName = nombre;
-        console.log(productName);
-        addcarrito(productName,1);
+        addcarrito(productName);
       };
 
     return (

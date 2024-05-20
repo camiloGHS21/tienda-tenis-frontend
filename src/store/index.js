@@ -16,7 +16,7 @@ const useProductStore = create((set) => ({
   }, fetchCarrito: async () => {
     try {
       const data = await GetAllcarrito();
-      set({ carrito: data });
+      set({ carrito: [data] });
     } catch (error) {
       console.error('Error fetching products:', error);
       // Handle error if needed
@@ -27,14 +27,14 @@ const useProductStore = create((set) => ({
     const data = await GetProduct(name);
 
     // Actualizar el estado con los productos encontrados
-    if(data.length > 0){
+      
       set({ products: data });
-    }
+    
   },
-  addProductToCarrito: async (name,cantidad) => {
+  addProductToCarrito: async (name) => {
     try {
-        const carritoProduct = await GetProduct(name);
-       carritoProduct.map(cart => {const total = cantidad*cart.precio;addCarrito({"cantidad_de_productos": 5,"total": 5000,"producto": carritoProduct})})
+        const Product = await GetProduct(name);
+       Product.map(cart => {addCarrito(cart);console.log(cart)})
         set({ carrito: carritoProduct});
     } catch (error) {
         console.error('Error adding product to carrito:', error);
