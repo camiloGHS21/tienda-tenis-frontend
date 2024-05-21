@@ -7,6 +7,7 @@ import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import  Login  from "./pages/Login";
 import  Register  from "./pages/Register";
+import  Know_us  from "./pages/know_us";
 const App = () => {
   return (
     <Router>
@@ -16,6 +17,8 @@ const App = () => {
         <Route path="contact" element={<Contact />} />
         <Route path="Login" element={< Login/>} />
         <Route path="Register" element={< Register/>} />
+        <Route path="Know_us" element={< Know_us/>} />
+        
       </Routes>
       <Footer/>
     </Router>

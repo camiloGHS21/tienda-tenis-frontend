@@ -98,6 +98,9 @@ export function Navbar() {
             <li>
             <Link to="/Login" className="block py-2 px-3 text-2xl text-black rounded md:bg-transparent " aria-current="page">Login</Link>
             </li>
+            <li>
+            <Link to="/Know_us" className="block py-2 px-3 text-2xl text-black rounded md:bg-transparent " aria-current="page">Know us</Link>
+            </li>
           </ul>
         </div>
 
