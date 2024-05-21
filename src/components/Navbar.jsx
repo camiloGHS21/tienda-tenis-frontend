@@ -106,6 +106,9 @@ export function Navbar() {
               <li>
                 <Link to="/contact" className="block py-2 px-3 text-2xl text-black rounded md:bg-transparent " aria-current="page">Contact</Link>
               </li>
+              <li>
+                <Link to="/know_us" className="block py-2 px-3 text-2xl text-black rounded md:bg-transparent " aria-current="page">About</Link>
+              </li>
               {!isAuthenticated() && <li>
                 <Link to="/Login" className="block py-2 px-3 text-2xl text-black rounded md:bg-transparent " aria-current="page">Login</Link>
               </li>

@@ -7,6 +7,7 @@ import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import  Login  from "./pages/Login";
 import  Register  from "./pages/Register";
+import AboutUs from "./pages/know_us"
 const isAuthenticated = () => {
   // Verificar si la cookie JSESSIONID está presente
   const jsessionId = document.cookie
@@ -39,6 +40,7 @@ const App = () => {
         <Route path="contact" exect element={<Contact />} />
         <Route path="Login" exact element={< LoginAuth/>} />
         <Route path="Register" exact element={< RegisterAuth/>} />
+        <Route path="/know_us" exact element={< AboutUs/>} />
       </Routes>
       <Footer/>
     </Router>
