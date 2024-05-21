@@ -1,13 +1,20 @@
-import React, { useState } from 'react';
-
+import React, { useState,useRef } from 'react';
+import useProductStore from '../store';
 export default function Registro() {
     const [showModal, setShowModal] = useState(false);
-
+    const fetchLogin = useProductStore((state) => state.addUser)
     const handleSubmit = (event) => {
         event.preventDefault();
+        const formData = new FormData(event.target);
+        const nombre = formData.get('nombre');
+        const apellidos = formData.get('apellido');
+        const email = formData.get('email');
+        const password = formData.get('password');
         setShowModal(true);
+        fetchLogin(email,password,nombre,apellidos);
+        event.target.reset();
     };
-
+    
     return (
         <section className="bg-gray-50 dark:bg-gray-900">
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">

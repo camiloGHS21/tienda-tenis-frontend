@@ -1,7 +1,7 @@
 import { create} from 'zustand'
 import { GetAllProducts,GetProduct} from '../api/ProductApi';
 import { GetAllcarrito,addCarrito ,EliminarProductCarrito} from '../api/CarritoApi';
-
+import { addUser } from '../api/UserApi';
 const useProductStore = create((set) => ({
   products: [],
   carrito: [],
@@ -34,8 +34,7 @@ const useProductStore = create((set) => ({
   addProductToCarrito: async (name) => {
     try {
         const Product = await GetProduct(name);
-       Product.map(cart => {addCarrito(cart);console.log(cart)})
-        set({ carrito: carritoProduct});
+       Product.map(cart => {addCarrito(cart)})
     } catch (error) {
         console.error('Error adding product to carrito:', error);
         // Handle error if needed
@@ -47,6 +46,14 @@ const useProductStore = create((set) => ({
   
     } catch (error) {
         console.error('Error adding product to carrito:', error);
+        // Handle error if needed
+       }
+  },addUser:async (email,password,nombre,apellidos)=>{
+    try {
+       await addUser(email,password,nombre,apellidos);
+  
+    } catch (error) {
+        console.error('Error adding User:', error);
         // Handle error if needed
        }
   }

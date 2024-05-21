@@ -45,13 +45,8 @@ export async function EliminarProductCarrito(Idproducto) {
             },
             // No es necesario enviar datos en el cuerpo de la solicitud para eliminar un producto
         });
-        if (!response.ok) {
-            throw new Error('Failed to fetch products');
-        }
-        const products = await response.json();
-        return products;
-    } catch (error) {
+    }  catch (error) {
         console.error('Error fetching products:', error);
-        // Puedes manejar el error aquí, como mostrar un mensaje de error al usuario
+        // You might want to handle the error here, such as showing an error message to the user.
     }
 }
