@@ -89,24 +89,6 @@ export function Navbar() {
             </button>
 
           </div>
-<<<<<<< HEAD
-=======
-          <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-[#EAECEC] md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-[#EAECEC] dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-            <li>
-              <a href="/" className="block py-2 px-3 text-2xl text-black rounded md:bg-transparent " aria-current="page">Home</a>
-            </li>
-            <li>
-              <Link to="/contact" className="block py-2 px-3 text-2xl text-black rounded md:bg-transparent " aria-current="page">Contact</Link>
-            </li>
-            <li>
-            <Link to="/Login" className="block py-2 px-3 text-2xl text-black rounded md:bg-transparent " aria-current="page">Login</Link>
-            </li>
-            <li>
-            <Link to="/Know_us" className="block py-2 px-3 text-2xl text-black rounded md:bg-transparent " aria-current="page">Know us</Link>
-            </li>
-          </ul>
-        </div>
->>>>>>> ad8300d469af4c3e550c422a101f04f1924a80fd
 
           <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-search">
             <div className="relative mt-3 md:hidden">
