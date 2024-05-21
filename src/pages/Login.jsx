@@ -11,7 +11,7 @@ export default function Login() {
         // Perform login logic here (send request to server, etc.)
         // Once login is successful, set the cookie
         fetchLogin(email,password);
-    
+          
     };
     return (
         <section className="bg-gray-50 dark:bg-gray-900">
