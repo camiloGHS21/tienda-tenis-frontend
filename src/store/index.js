@@ -1,6 +1,6 @@
 import { create} from 'zustand'
 import { GetAllProducts,GetProduct} from '../api/ProductApi';
-import { GetAllcarrito,addCarrito } from '../api/CarritoApi';
+import { GetAllcarrito,addCarrito ,EliminarProductCarrito} from '../api/CarritoApi';
 
 const useProductStore = create((set) => ({
   products: [],
@@ -40,8 +40,16 @@ const useProductStore = create((set) => ({
         console.error('Error adding product to carrito:', error);
         // Handle error if needed
     }
-}
-
+  },
+  deleteProductToCarrito: async (id) => {
+    try {
+       await EliminarProductCarrito(id);
+  
+    } catch (error) {
+        console.error('Error adding product to carrito:', error);
+        // Handle error if needed
+       }
+  }
 }));
 
 export default useProductStore;

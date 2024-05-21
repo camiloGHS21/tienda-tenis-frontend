@@ -16,11 +16,13 @@ export function Navbar() {
   const product = useProductStore((state) => state.products);
   const cart = useProductStore((state) => state.carrito)
   const fetchCart = useProductStore((state) => state.fetchCarrito)
+  const fetchEliminar = useProductStore((state) => state.deleteProductToCarrito)
   const [nombre, setnombre] = useState("")
   const [abrirCarrito,setAbrirCarrito] = useState(false);
+
   useEffect(() => {
     fetchCart();
-  }, [])
+  }, [cart]);
 
   // Llamar a fetchProduct con el nombre del producto deseado
   // Llamar a fetchProduct con el nombre del producto deseado
@@ -29,12 +31,8 @@ export function Navbar() {
 
     if (nombre.length > 0) {
       fetchProduct(nombre);
-    }else{
-      window.location.reload();
     }
     
-
-
   }
   function changeName(event) {
     setnombre(event.target.value);
@@ -42,24 +40,10 @@ export function Navbar() {
 
 
   const removeProduct = (idToRemove) => {
-    // const updatedProducts = cart.filter(product => product.id !== idToRemove);
-    // // Actualizar el estado de los productos
-    // setProduct1(updatedProducts);
+    fetchEliminar(idToRemove)
   };
   
-  const sumarPrecios = () => {
-    // const total = product1.reduce((accumulator, currentProduct) => {
-    //   // Convertir el precio del producto a un número (puede que necesites un paso adicional aquí dependiendo del formato del precio)
-    //   const price = parseFloat(currentProduct.total.replace('$', '')); // Eliminar el signo de dólar si lo tiene
-    //   return accumulator + price;
-    // }, 0);
-  
-    // // Redondear el total a dos decimales
-    // const totalConDosDecimales = total.toFixed(2);
-  
-    // return totalConDosDecimales;
-  };
-  
+
 
   return (
  <>

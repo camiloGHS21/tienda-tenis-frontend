@@ -34,3 +34,24 @@ export async function addCarrito(producto) {
         // You might want to handle the error here, such as showing an error message to the user.
     }
 }
+
+export async function EliminarProductCarrito(Idproducto) {
+    const URLProduct = `http://localhost:8080/api/cart/remove_product?carritoId=3&productoId=${Idproducto}`;
+    try {
+        const response = await fetch(URLProduct, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            // No es necesario enviar datos en el cuerpo de la solicitud para eliminar un producto
+        });
+        if (!response.ok) {
+            throw new Error('Failed to fetch products');
+        }
+        const products = await response.json();
+        return products;
+    } catch (error) {
+        console.error('Error fetching products:', error);
+        // Puedes manejar el error aquí, como mostrar un mensaje de error al usuario
+    }
+}
