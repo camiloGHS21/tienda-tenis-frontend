@@ -7,6 +7,7 @@ import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import  Login  from "./pages/Login";
 import  Register  from "./pages/Register";
+<<<<<<< HEAD
 const isAuthenticated = () => {
   // Verificar si la cookie JSESSIONID está presente
   const jsessionId = document.cookie
@@ -30,15 +31,27 @@ const RegisterAuth = () => {
   }
 };
 
+=======
+import  Know_us  from "./pages/know_us";
+>>>>>>> ad8300d469af4c3e550c422a101f04f1924a80fd
 const App = () => {
   return (
     <Router>
     <Navbar/>
       <Routes>
+<<<<<<< HEAD
         <Route path="/" exact element={<Products />} />
         <Route path="contact" exect element={<Contact />} />
         <Route path="Login" exact element={< LoginAuth/>} />
         <Route path="Register" exact element={< RegisterAuth/>} />
+=======
+        <Route path="/" element={<Products />} />
+        <Route path="contact" element={<Contact />} />
+        <Route path="Login" element={< Login/>} />
+        <Route path="Register" element={< Register/>} />
+        <Route path="Know_us" element={< Know_us/>} />
+        
+>>>>>>> ad8300d469af4c3e550c422a101f04f1924a80fd
       </Routes>
       <Footer/>
     </Router>
