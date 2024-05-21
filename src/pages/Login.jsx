@@ -1,6 +1,7 @@
 import React from 'react';
-
+import useProductStore from '../store';
 export default function Login() {
+    const fetchLogin = useProductStore((state) => state.login)
     const handleLogin = (event) => {
         event.preventDefault(); // Prevents the default form submission behavior
         
@@ -9,7 +10,8 @@ export default function Login() {
 
         // Perform login logic here (send request to server, etc.)
         // Once login is successful, set the cookie
-        document.cookie = `JSESSIONID=${email}:${password}; path=/`;
+        fetchLogin(email,password);
+    
     };
     return (
         <section className="bg-gray-50 dark:bg-gray-900">
@@ -45,7 +47,7 @@ export default function Login() {
                                 Don’t have an account yet? <a href="/Register" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</a>
                             </p>
                             <div className="bg-white rounded-lg p-6">
-                            </div>
+                            </div> 
                         </form>
                     </div>
                 </div>

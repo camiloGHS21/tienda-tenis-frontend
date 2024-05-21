@@ -2,7 +2,7 @@ import React, { useState,useRef } from 'react';
 import useProductStore from '../store';
 export default function Registro() {
     const [showModal, setShowModal] = useState(false);
-    const fetchLogin = useProductStore((state) => state.addUser)
+    const fetchRegister = useProductStore((state) => state.addUser)
     const handleSubmit = (event) => {
         event.preventDefault();
         const formData = new FormData(event.target);
@@ -11,7 +11,7 @@ export default function Registro() {
         const email = formData.get('email');
         const password = formData.get('password');
         setShowModal(true);
-        fetchLogin(email,password,nombre,apellidos);
+        fetchRegister(email,password,nombre,apellidos);
         event.target.reset();
     };
     

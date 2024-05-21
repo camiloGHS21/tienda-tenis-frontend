@@ -1,10 +1,12 @@
 import { create} from 'zustand'
 import { GetAllProducts,GetProduct} from '../api/ProductApi';
 import { GetAllcarrito,addCarrito ,EliminarProductCarrito} from '../api/CarritoApi';
-import { addUser } from '../api/UserApi';
+import { addUser ,getUser } from '../api/UserApi';
+import { Login } from '../api/loginApi';
 const useProductStore = create((set) => ({
   products: [],
   carrito: [],
+  nombreUser: "",
   fetchProducts: async () => {
     try {
       const data = await GetAllProducts();
@@ -23,13 +25,10 @@ const useProductStore = create((set) => ({
     }
   },
   searchProduct: async (name) => {
-    // Simular una búsqueda de producto por nombre
-    const data = await GetProduct(name);
-
-    // Actualizar el estado con los productos encontrados
-      
+   
+      const data = await GetProduct(name);
       set({ products: data });
-    
+   
   },
   addProductToCarrito: async (name) => {
     try {
@@ -56,6 +55,23 @@ const useProductStore = create((set) => ({
         console.error('Error adding User:', error);
         // Handle error if needed
        }
+  },login:async (email,password)=>{
+     try {
+      await Login(email,password);
+      document.cookie = `JSESSIONID=${email}:${password}; path=/`;
+      window.location.href = '/';
+     } catch (error) {
+      console.error('Error Loggin: ', error);
+     }
+  },getUser:async ()=>{
+    try {
+      const data =  await getUser();
+      const name = data.usuariosInfo.nombre+" "+data.usuariosInfo.apellidos
+      set({ nombreUser: name });
+    } catch (error) {
+      console.error('Error fetching user:', error);
+      // Handle error if needed
+    }
   }
 }));
 
