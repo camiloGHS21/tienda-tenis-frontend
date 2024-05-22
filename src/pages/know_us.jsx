@@ -20,7 +20,7 @@ const AboutUs = () => {
               <div className="max-w-xs mx-4 mb-4 lg:mb-0 lg:mx-8">
                 <div className="flex items-center justify-center">
                   <div className="flex-shrink-0 h-10 w-10">
-                    <img className="h-full w-full object-cover rounded-full" src="/public/img/descargar (1).jpg" alt="Michael Jordan" />
+                    <img className="h-full w-full object-cover rounded-full" src="/img/descargar (1).jpg" alt="Michael Jordan" />
                   </div>
                   <div className="ml-4">
                     <p className="text-sm font-medium text-gray-900">Michael Jordan</p>
@@ -31,7 +31,7 @@ const AboutUs = () => {
               <div className="max-w-xs mx-4 mb-4 lg:mb-0 lg:mx-8">
                 <div className="flex items-center justify-center">
                   <div className="flex-shrink-0 h-10 w-10">
-                    <img className="h-full w-full object-cover rounded-full" src="/public/img/130097149.jpg" alt="Nicolas Grajales" />
+                    <img className="h-full w-full object-cover rounded-full" src="/img/130097149.jpg" alt="Nicolas Grajales" />
                   </div>
                   <div className="ml-4 my-5">
                     <p className="text-sm font-medium text-gray-900">Nicolas Grajales hoyos</p>
@@ -42,7 +42,7 @@ const AboutUs = () => {
               <div className="max-w-xs mx-4 mb-4 lg:mb-0 lg:mx-8">
                 <div className="flex items-center justify-center">
                   <div className="flex-shrink-0 h-10 w-10">
-                    <img className="h-full w-full object-cover rounded-full" src="/public/img/camilo (1).png" alt="Camilo Grajales" />
+                    <img className="h-full w-full object-cover rounded-full" src="/img/camilo (1).png" alt="Camilo Grajales" />
                   </div>
                   <div className="ml-4">
                     <p className="text-sm font-medium text-gray-900">Camilo Grajales Holgin</p>
