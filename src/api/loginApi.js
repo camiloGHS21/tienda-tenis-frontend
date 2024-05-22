@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2';
 
 export async function Login(username, password) {
     const loginURL = "http://localhost:8080/api/login";
@@ -13,7 +14,11 @@ export async function Login(username, password) {
             }
         });
         if (response.status === 401) {
-           alert("el usuario y contraseña es incorrecto")
+            Swal.fire({
+                icon: 'error',
+                title: '¡Error!',
+                text: 'Usuario y/o contraseña incorrectos. Por favor, inténtalo de nuevo.'
+            });
         }
         if (!response.ok) {
             throw new Error('Failed to login. Please check your credentials.');
