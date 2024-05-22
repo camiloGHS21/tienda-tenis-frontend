@@ -9,6 +9,8 @@ import  Login  from "./pages/Login";
 import  Register  from "./pages/Register";
 import Payment from "./pages/payment";
 import AboutUs from "./pages/know_us";
+import ProductDetail from './pages/ProductDetail';
+import NotFound from "./pages/NotFound";
 
 const isAuthenticated = () => {
   // Verificar si la cookie JSESSIONID está presente
@@ -47,11 +49,13 @@ const App = () => {
     <Navbar/>
       <Routes>
         <Route path="/" exact element={<Products />} />
-        <Route path="contact" exect element={<Contact />} />
+        <Route path="contact" exact element={<Contact />} />
         <Route path="Login" exact element={< LoginAuth/>} />
         <Route path="Register" exact element={< RegisterAuth/>} />
-        <Route path="/know_us" exact element={< AboutUs/>} />
-        <Route path="/payment" exact element={< PaymentAuth/>} />
+        <Route path="know_us" exact element={< AboutUs/>} />
+        <Route path="payment" exact element={< PaymentAuth/>} />
+        <Route path="product/:name" exact element={<ProductDetail/>} />
+        <Route path="*" exact element={<NotFound/>} />
       </Routes>
       <Footer/>
     </Router>
