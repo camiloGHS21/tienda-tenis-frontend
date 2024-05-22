@@ -20,7 +20,7 @@ export function Navbar() {
   };
 
 
-
+  const [showModal, setShowModal] = useState(false);
   const fetchProduct = useProductStore((state) => state.searchProduct);
   const product = useProductStore((state) => state.products);
   const nombreUser1 = useProductStore((state) => state.nombreUser);
@@ -57,13 +57,17 @@ export function Navbar() {
   };
 
 const compra = () =>{
+  if(isAuthenticated()){
   cart.map((cart) => {
    if(cart.total === 0){
-    alert("no hay productos hpt")
+    alert("no hay productos")
    }else {
     window.location.href = "/payment";
   }
 })
+}else{
+  setShowModal(true)
+}
     
 }
   return (
@@ -279,6 +283,14 @@ const compra = () =>{
           </div>
         </Dialog>
       </Transition.Root>}
+      {showModal && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+                    <div className="bg-white rounded-lg p-6">
+                        <p className="text-lg text-red-500">Please authentication !</p>
+                        <button onClick={() => setShowModal(false)} className="mt-4 px-4 py-2 items-center bg-blue-500 text-white rounded-md hover:bg-blue-600 mx-auto block">Close</button>
+                    </div>
+                </div>
+            )}
     </>
   )
 }

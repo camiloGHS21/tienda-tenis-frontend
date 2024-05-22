@@ -1,6 +1,6 @@
 import * as React from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, redirect} from "react-router-dom";
 import Products from "./pages/Products";
 import Contact from "./pages/Contact";
 import { Navbar } from "./components/Navbar";
@@ -32,6 +32,14 @@ const RegisterAuth = () => {
     return < Register/>;
   }
 };
+const PaymentAuth = ()=>{
+  if (isAuthenticated()) {
+    // Si el usuario no está autenticado, redirigirlo a la página de inicio
+    return < Payment/>;
+  }else{
+    redirect('/')
+  }
+}
 
 const App = () => {
   return (
@@ -43,7 +51,7 @@ const App = () => {
         <Route path="Login" exact element={< LoginAuth/>} />
         <Route path="Register" exact element={< RegisterAuth/>} />
         <Route path="/know_us" exact element={< AboutUs/>} />
-        <Route path="/payment" exact element={< Payment/>} />
+        <Route path="/payment" exact element={< PaymentAuth/>} />
       </Routes>
       <Footer/>
     </Router>
