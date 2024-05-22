@@ -37,7 +37,7 @@ const PaymentAuth = ()=>{
     // Si el usuario no está autenticado, redirigirlo a la página de inicio
     return < Payment/>;
   }else{
-    redirect('/')
+    redirect("/")
   }
 }
 

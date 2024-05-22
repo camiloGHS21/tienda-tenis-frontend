@@ -10,7 +10,9 @@ export default function Products() {
   useEffect(() => {
     fetchProducts();
   }, []);
-  
+  if (!products) {
+    window.location.reload()
+  }
     return (
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 m-10">
        

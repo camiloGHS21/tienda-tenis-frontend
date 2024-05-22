@@ -44,6 +44,8 @@ export function Navbar() {
 
     if (nombre.length > 0) {
       fetchProduct(nombre);
+    }else {
+      window.location.reload()
     }
 
   }

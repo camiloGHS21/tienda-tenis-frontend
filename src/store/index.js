@@ -7,6 +7,7 @@ const useProductStore = create((set) => ({
   products: [],
   carrito: [],
   nombreUser: "",
+  NotFoundproduct: false,
   fetchProducts: async () => {
     try {
       const data = await GetAllProducts();
@@ -72,7 +73,10 @@ const useProductStore = create((set) => ({
       console.error('Error fetching user:', error);
       // Handle error if needed
     }
-  }
+  },
+  setNotFoundProduct:Boolean = (valor) =>{
+    set({ NotFoundproduct : valor})
+  },
 }));
 
 export default useProductStore;
