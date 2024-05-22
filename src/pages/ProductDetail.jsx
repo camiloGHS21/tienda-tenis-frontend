@@ -1,9 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 export default function ProductDetail() {
+    const setProductosInfo = useProductStore((state) => state.setProductosInfo);
+    // const productName = this.props.match.params.productName;
+    const productosInfo = useProductStore((state) => state.productosInfo);
+    useEffect(()=>{
+        setProductosInfo(productName)
+    },[])
   return (
+    
     <section class="py-8 bg-white md:py-16 dark:bg-gray-900 antialiased">
     <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0">
+      
       <div class="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
         <div class="shrink-0 max-w-md lg:max-w-lg mx-auto">
           <img class="w-full dark:hidden" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg" alt="" />

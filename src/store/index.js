@@ -5,11 +5,10 @@ import { addUser ,getUser } from '../api/UserApi';
 import { Login } from '../api/loginApi';
 const useProductStore = create((set) => ({
   products: [],
-  carrito: [
-  
-  ],
+  carrito: [],
   nombreUser: "",
   idcarrito:0,
+  productosInfo:[],
   fetchProducts: async () => {
     try {
       const data = await GetAllProducts();
@@ -21,7 +20,6 @@ const useProductStore = create((set) => ({
   }, fetchCarrito: async (id) => {
     try {
       const data = await GetAllcarrito(id);
-      console.log(data)
       if(data === null){
         set({carrito:[  {
           id_carrito: 0,
@@ -53,9 +51,9 @@ const useProductStore = create((set) => ({
         // Handle error if needed
     }
   },
-  deleteProductToCarrito: async (id) => {
+  deleteProductToCarrito: async (id,idProduct) => {
     try {
-       await EliminarProductCarrito(id);
+       await EliminarProductCarrito(id,idProduct);
   
     } catch (error) {
         console.error('Error adding product to carrito:', error);
@@ -87,6 +85,9 @@ const useProductStore = create((set) => ({
     } catch (error) {
       
     }
+  },setProductosInfo:async (name) =>{
+    const product = await GetProduct(name);
+    set({productosInfo: product})
   }
 }));
 

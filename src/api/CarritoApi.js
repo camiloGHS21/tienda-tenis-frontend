@@ -1,3 +1,4 @@
+
 export async function GetAllcarrito(id) {
     const URLProduct = "http://localhost:8080/api/cart/items";
     try {
@@ -41,8 +42,8 @@ export async function addCarrito(producto,id_carrito) {
     }
 }
 
-export async function EliminarProductCarrito(Idproducto) {
-    const URLProduct = `http://localhost:8080/api/cart/remove_product?carritoId=3&productoId=${Idproducto}`;
+export async function EliminarProductCarrito(Idproducto,id) {
+    const URLProduct = `http://localhost:8080/api/cart/remove_product?carritoId=${id}&productoId=${Idproducto}`;
     try {
         const response = await fetch(URLProduct, {
             method: 'PATCH',

@@ -56,7 +56,7 @@ export function Navbar() {
 
 
   const removeProduct = (idToRemove) => {
-    fetchEliminar(idToRemove)
+    fetchEliminar(idToRemove,idcarrito)
   };
 
 const compra = () =>{
