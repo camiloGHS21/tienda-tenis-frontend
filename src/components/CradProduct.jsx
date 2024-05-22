@@ -2,10 +2,11 @@ import React from 'react'
 import useProductStore from '../store';
 export function CradProduct({nombre,imagen,precio}) {
     const addcarrito = useProductStore((state) => state.addProductToCarrito);
+    const idcarrito = useProductStore((state) => state.idcarrito);
      const fetchProduct = useProductStore((state) => state.searchProduct);
     const handleAddToCarrito = () => {
         const productName = nombre;
-        addcarrito(productName);
+        addcarrito(productName,idcarrito);
       };
       function buscar() {
 

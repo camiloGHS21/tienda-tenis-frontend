@@ -24,6 +24,7 @@ export function Navbar() {
   const fetchProduct = useProductStore((state) => state.searchProduct);
   const product = useProductStore((state) => state.products);
   const nombreUser1 = useProductStore((state) => state.nombreUser);
+  const idcarrito = useProductStore((state) => state.idcarrito);
   const cart = useProductStore((state) => state.carrito)
   const fetchCart = useProductStore((state) => state.fetchCarrito)
   const fetchEliminar = useProductStore((state) => state.deleteProductToCarrito)
@@ -32,7 +33,7 @@ export function Navbar() {
   const [abrirCarrito, setAbrirCarrito] = useState(false);
  
   useEffect(() => {
-    fetchCart();
+    fetchCart(idcarrito);
     fetchUser();
   }, [cart]);
 
@@ -148,7 +149,7 @@ const compra = () =>{
                       </li>
                     </ul>
                     <div className="py-2">
-                      <button onClick={() => deleteCookie("JSESSIONID")} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" aria-current="page">Sign out</button>
+                      <button onClick={() => {deleteCookie("JSESSIONID"); window.location.reload()}} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" aria-current="page">Sign out</button>
                     </div>
                   </div>
                 </>

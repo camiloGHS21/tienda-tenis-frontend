@@ -54,7 +54,7 @@ const App = () => {
         <Route path="Register" exact element={< RegisterAuth/>} />
         <Route path="know_us" exact element={< AboutUs/>} />
         <Route path="payment" exact element={< PaymentAuth/>} />
-        <Route path="product/:name" exact element={<ProductDetail/>} />
+        <Route path="product" exact element={<ProductDetail/>} />
         <Route path="*" exact element={<NotFound/>} />
       </Routes>
       <Footer/>

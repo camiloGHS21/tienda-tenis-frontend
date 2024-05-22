@@ -12,7 +12,9 @@ export async function Login(username, password) {
                 'Authorization': `Basic ${encodedCredentials}` // Adding Basic Auth header
             }
         });
-
+        if (response.status === 401) {
+           alert("el usuario y contraseña es incorrecto")
+        }
         if (!response.ok) {
             throw new Error('Failed to login. Please check your credentials.');
         }

@@ -5,9 +5,11 @@ import { addUser ,getUser } from '../api/UserApi';
 import { Login } from '../api/loginApi';
 const useProductStore = create((set) => ({
   products: [],
-  carrito: [],
+  carrito: [
+  
+  ],
   nombreUser: "",
-  NotFoundproduct: false,
+  idcarrito:0,
   fetchProducts: async () => {
     try {
       const data = await GetAllProducts();
@@ -16,10 +18,21 @@ const useProductStore = create((set) => ({
       console.error('Error fetching products:', error);
       // Handle error if needed
     }
-  }, fetchCarrito: async () => {
+  }, fetchCarrito: async (id) => {
     try {
-      const data = await GetAllcarrito();
-      set({ carrito: [data] });
+      const data = await GetAllcarrito(id);
+      console.log(data)
+      if(data === null){
+        set({carrito:[  {
+          id_carrito: 0,
+          cantidad_de_productos: 0,
+          total: 0,
+          productos: []
+        }]})
+      }else{
+        set({ carrito: [data] });
+      }
+      
     } catch (error) {
       console.error('Error fetching products:', error);
       // Handle error if needed
@@ -31,10 +44,10 @@ const useProductStore = create((set) => ({
       set({ products: data });
    
   },
-  addProductToCarrito: async (name) => {
+  addProductToCarrito: async (name,id) => {
     try {
         const Product = await GetProduct(name);
-       Product.map(cart => {addCarrito(cart)})
+       Product.map(cart => {addCarrito(cart,id)})
     } catch (error) {
         console.error('Error adding product to carrito:', error);
         // Handle error if needed
@@ -68,15 +81,13 @@ const useProductStore = create((set) => ({
     try {
       const data =  await getUser();
       const name = data.usuariosInfo.nombre+" "+data.usuariosInfo.apellidos
+      const id_carrito = data.carrito.id_carrito;
       set({ nombreUser: name });
+      set({ idcarrito : id_carrito})
     } catch (error) {
-      console.error('Error fetching user:', error);
-      // Handle error if needed
+      
     }
-  },
-  setNotFoundProduct:Boolean = (valor) =>{
-    set({ NotFoundproduct : valor})
-  },
+  }
 }));
 
 export default useProductStore;
