@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import useProductStore from '../store';
-
+import Swal from 'sweetalert2';
 export default function ProductDetail() {
   const isAuthenticated = () => {
     // Verificar si la cookie JSESSIONID está presente
