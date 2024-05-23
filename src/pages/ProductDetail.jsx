@@ -64,67 +64,67 @@ export default function ProductDetail() {
                       ${product.precio}
                     </p>
                     <div className="flex items-center gap-2 mt-2 sm:mt-0">
-                                    <svg
-                                        onClick={toggleFavorite}
-                                        className={`w-6 h-6 cursor-pointer ${favorite ? 'text-red-500' : 'text-gray-400'}`}
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 20 20"
-                                        fill="currentColor"
-                                        aria-hidden="true"
-                                    >
-                                        {favorite ? (
-                                            <path
-                                                fillRule="evenodd"
-                                                d="M10 3c-2.42-3.16-7-1.32-7 2.67 0 3.42 5.34 7.26 7 8.76 1.66-1.5 7-5.34 7-8.76 0-3.99-4.58-5.83-7-2.67z"
-                                                clipRule="evenodd"
-                                            />
-                                        ) : (
-                                            <path
-                                                fillRule="evenodd"
-                                                d="M10 4.481c1.61-2.104 6-1.108 6 2.29 0 2.93-4.57 6.206-6 7.54-1.43-1.334-6-4.609-6-7.54 0-3.398 4.39-4.394 6-2.29z"
-                                                clipRule="evenodd"
-                                            />
-                                        )}
-                                    </svg>
-                                    <p className="text-sm font-medium leading-none text-gray-500 dark:text-gray-400">(5.0)</p>
-                                    <a
-                                        href="#"
-                                        className="text-sm font-medium leading-none text-gray-900 underline hover:no-underline dark:text-white"
-                                    >
-                                        345 Reviews
-                                    </a>
-                                </div>
-                            </div>
+                      <svg
+                        onClick={toggleFavorite}
+                        className={`w-6 h-6 cursor-pointer ${favorite ? 'text-red-500' : 'text-gray-400'}`}
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        aria-hidden="true"
+                      >
+                        {favorite ? (
+                          <path
+                            fillRule="evenodd"
+                            d="M10 3c-2.42-3.16-7-1.32-7 2.67 0 3.42 5.34 7.26 7 8.76 1.66-1.5 7-5.34 7-8.76 0-3.99-4.58-5.83-7-2.67z"
+                            clipRule="evenodd"
+                          />
+                        ) : (
+                          <path
+                            fillRule="evenodd"
+                            d="M10 4.481c1.61-2.104 6-1.108 6 2.29 0 2.93-4.57 6.206-6 7.54-1.43-1.334-6-4.609-6-7.54 0-3.398 4.39-4.394 6-2.29z"
+                            clipRule="evenodd"
+                          />
+                        )}
+                      </svg>
+                      <p className="text-sm font-medium leading-none text-gray-500 dark:text-gray-400">(5.0)</p>
+                      <a
+                        href="#"
+                        className="text-sm font-medium leading-none text-gray-900 underline hover:no-underline dark:text-white"
+                      >
+                        345 Reviews
+                      </a>
+                    </div>
+                  </div>
 
                   <div class="mt-6 sm:gap-4 sm:items-center sm:flex sm:mt-8">
-                      <button
-                                    onClick={toggleFavorite}
-                                    className="flex items-center justify-center py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-                                >
-                                    {/* Ícono de corazón */}
-                                    <svg
-                                        className="w-5 h-5 me-2"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 20 20"
-                                        fill="currentColor"
-                                        aria-hidden="true"
-                                    >
-                                        {favorite ? (
-                                            <path
-                                                fillRule="evenodd"
-                                                d="M10 3c-2.42-3.16-7-1.32-7 2.67 0 3.42 5.34 7.26 7 8.76 1.66-1.5 7-5.34 7-8.76 0-3.99-4.58-5.83-7-2.67z"
-                                                clipRule="evenodd"
-                                            />
-                                        ) : (
-                                            <path
-                                                fillRule="evenodd"
-                                                d="M10 4.481c1.61-2.104 6-1.108 6 2.29 0 2.93-4.57 6.206-6 7.54-1.43-1.334-6-4.609-6-7.54 0-3.398 4.39-4.394 6-2.29z"
-                                                clipRule="evenodd"
-                                            />
-                                        )}
-                                    </svg>
-                                    Add to favorites
-                                </button>
+                    <button
+                      onClick={toggleFavorite}
+                      className="flex items-center justify-center py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                    >
+                      {/* Ícono de corazón */}
+                      <svg
+                        className="w-5 h-5 me-2"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        aria-hidden="true"
+                      >
+                        {favorite ? (
+                          <path
+                            fillRule="evenodd"
+                            d="M10 3c-2.42-3.16-7-1.32-7 2.67 0 3.42 5.34 7.26 7 8.76 1.66-1.5 7-5.34 7-8.76 0-3.99-4.58-5.83-7-2.67z"
+                            clipRule="evenodd"
+                          />
+                        ) : (
+                          <path
+                            fillRule="evenodd"
+                            d="M10 4.481c1.61-2.104 6-1.108 6 2.29 0 2.93-4.57 6.206-6 7.54-1.43-1.334-6-4.609-6-7.54 0-3.398 4.39-4.394 6-2.29z"
+                            clipRule="evenodd"
+                          />
+                        )}
+                      </svg>
+                      Add to favorites
+                    </button>
 
                     <a
                       onClick={() => handleAddToCarrito(product.nombre)}
