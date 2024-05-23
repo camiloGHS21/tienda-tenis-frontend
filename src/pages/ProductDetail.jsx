@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom'; // Assuming you're using react-router
-
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import useProductStore from '../store';
 
 export default function ProductDetail() {
