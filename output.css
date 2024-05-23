@@ -1278,6 +1278,10 @@ input:checked + .toggle-bg {
   margin-top: 0.25rem;
 }
 
+.mt-10 {
+  margin-top: 2.5rem;
+}
+
 .mt-2 {
   margin-top: 0.5rem;
 }
@@ -1304,6 +1308,18 @@ input:checked + .toggle-bg {
 
 .mt-8 {
   margin-top: 2rem;
+}
+
+.mt-28 {
+  margin-top: 7rem;
+}
+
+.mt-36 {
+  margin-top: 9rem;
+}
+
+.mb-36 {
+  margin-bottom: 9rem;
 }
 
 .block {

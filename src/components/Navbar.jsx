@@ -78,7 +78,7 @@ const compra = () =>{
       <nav className="bg-[#EAECEC] border-gray-200 dark:bg-gray-900">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
-            <img src="img/logo.png" className="h-8" alt="Flowbite Logo" />
+            <img src="/img/logo.png" className="h-8" alt="jordan.cn" />
           </a>
           <div className="flex md:order-2">
             <button type="button" data-collapse-toggle="navbar-search" aria-controls="navbar-search" aria-expanded="false" className="md:hidden text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 me-1">
@@ -161,7 +161,7 @@ const compra = () =>{
 
           <div className='flex flex-col ml-8 mr-5  md:order-3 '>
             <button className='hidden md:block' onClick={() => setAbrirCarrito(true)}>
-              <img src="svg/carrito.svg" alt="" />
+              <img src="/svg/carrito.svg" alt="" />
             </button>
           </div>
         </div>
