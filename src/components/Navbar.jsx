@@ -219,7 +219,7 @@ const compra = () =>{
                                   <li key={product.id_producto} className="flex py-6">
                                     <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                       <img
-                                        src={product.imagen}
+                                        src={"/"+product.imagen}
                                         alt={product.imagen}
                                         className="h-full w-full object-cover object-center"
                                       />
