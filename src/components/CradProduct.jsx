@@ -1,12 +1,30 @@
 import React from 'react'
 import useProductStore from '../store';
+import Swal from 'sweetalert2';
 export function CradProduct({nombre,imagen,precio}) {
+    const isAuthenticated = () => {
+        // Verificar si la cookie JSESSIONID está presente
+        const jsessionId = document.cookie
+          .split('; ')
+          .find(row => row.startsWith('JSESSIONID='));
+    
+        // Si la cookie JSESSIONID está presente, el usuario está autenticado
+        return jsessionId !== undefined;
+      };
+    
     const addcarrito = useProductStore((state) => state.addProductToCarrito);
     const idcarrito = useProductStore((state) => state.idcarrito);
      const fetchProduct = useProductStore((state) => state.searchProduct);
     const handleAddToCarrito = () => {
         const productName = nombre;
         addcarrito(productName,idcarrito);
+        if (!isAuthenticated()) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'You need to be authenticated to add items to cart!',
+            });
+        }
       };
       function buscar() {
           fetchProduct(nombre);
