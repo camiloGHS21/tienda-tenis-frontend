@@ -1,16 +1,45 @@
 import React from 'react'
 import useProductStore from '../store';
+import Swal from 'sweetalert2';
 
 export default function Payment() {
   const cart = useProductStore((state) => state.carrito)
   const crearPedido = useProductStore((state) => state.crearPedido)
+
+  function areInputsComplete() {
+    const inputs = document.querySelectorAll('input[required]');
+    for (let input of inputs) {
+      if (input.value.trim() === '') {
+        return false;
+      }
+    }
+    return true;
+  }
+
   function payment(){
+    if (areInputsComplete()) {
     {cart.map((cart) => {
       const total_product = cart.total+50+70
       crearPedido(total_product,cart.productos)
-      console.log(cart.productos)
+      Swal.fire({
+        title: "Product Pay!",
+        text: "Products successfully purchased!",
+        icon: "success",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = '/';
+        }
+      });
     })}
+  }else {
+    Swal.fire({
+      title: "Incomplete Form",
+      text: "Please fill out all required fields.",
+      icon: "warning",
+    });
   }
+}
+  
   return (
     <div>
       <section className="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
