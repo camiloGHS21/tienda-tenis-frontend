@@ -33,7 +33,9 @@ export function Navbar() {
   const [abrirCarrito, setAbrirCarrito] = useState(false);
  
   useEffect(() => {
+    if(isAuthenticated()){
     fetchCart(idcarrito);
+    }
     fetchUser();
   }, [cart]);
 

@@ -3,9 +3,15 @@ import { GetAllProducts,GetProduct} from '../api/ProductApi';
 import { GetAllcarrito,addCarrito ,EliminarProductCarrito} from '../api/CarritoApi';
 import { addUser ,getUser } from '../api/UserApi';
 import { Login } from '../api/loginApi';
+import { crearPedido } from '../api/pedidoApi';
 const useProductStore = create((set) => ({
   products: [],
-  carrito: [],
+  carrito: [ {
+    id_carrito: 0,
+    cantidad_de_productos: 0,
+    total: 0,
+    productos: []
+  }],
   nombreUser: "",
   idcarrito:0,
   productosInfo:[],
@@ -27,9 +33,11 @@ const useProductStore = create((set) => ({
           total: 0,
           productos: []
         }]})
+      
       }else{
         set({ carrito: [data] });
       }
+      
       
     } catch (error) {
       console.error('Error fetching products:', error);
@@ -88,6 +96,11 @@ const useProductStore = create((set) => ({
   },setProductosInfo:async (name) =>{
     const product = await GetProduct(name);
     set({productosInfo: product})
+  },
+  crearPedido:async (total,productos)=>{
+    const data =  await getUser();
+    await crearPedido(total,data.id_usuario,productos);
+    console.log(data.id_usuario)
   }
 }));
 
